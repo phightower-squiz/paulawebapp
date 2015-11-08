@@ -1,0 +1,103 @@
+<!doctype html>
+<html<% if (includeModernizr) { %> class="no-js"<% } %> lang="">
+  <head>
+    <meta charset="utf-8">
+    <title><%= appname %></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="styles/plugins.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/medium.css" media="screen and (min-width: 41.0625em)">
+    <link rel="stylesheet" href="styles/wide.css" media="screen and (min-width:60em)">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <% if (includeModernizr) { %>
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    <% } %>
+  </head>
+  <body>
+    <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div id="page-wrapper">
+
+      <!-- header -->
+      <div class="container header">
+        <header>
+            
+          <div class="grid-8">
+              <a href="index.html"><img src="images/logo.png"  alt="logo" class="logo"></a>
+          </div>
+          <div class="grid-4">
+              <div class="mobile-menu" role="button">
+                  <a href="#"><span>MENU</span> <i class="fa fa-bars"></i></a>
+              </div>
+
+          </div>
+
+        </header><!-- /.header --> 
+      </div>
+
+      <!-- nav -->
+      <div class="container nav">
+        <nav>
+          <ul class="mainnav">
+            
+          </ul>
+        </nav>
+
+      <!-- main area -->
+      </div>
+      <div class="container main">
+        <div class="grid-12 main-wrapper">
+          Main text no padding
+        </div>
+      </div>
+      <div class="container padded main">
+        Main text padded
+      </div>
+
+      <!-- slider -->
+      <div class="container main">
+        <div class="grid-12">
+          <div class="sample-slider">
+            <div class="sample-slide">Some text</div>
+            <div class="sample-slide">Some more text</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer -->
+      <div class="container-fluid footer">
+        <footer>
+          Footer
+        </footer>
+      </div>
+    </div>
+    <script src="scripts/vendor/jquery.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+</html>

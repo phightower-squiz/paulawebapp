@@ -1,0 +1,109 @@
+// These imports have no CSS output, but provide variables, mixins and helpers to aid in construction of
+// a design cutup.
+@import "imports/boilerplate.scss";
+
+/*
+--------------------
+Reset (normalize.css)
+--------------------
+*/
+@import 'imports/normalize.scss';
+
+// Box size all the things
+// https://squizmap.squiz.net/imp-bp/6400
+// http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+// == Start box-sizing reset ==
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+       -moz-box-sizing: inherit;
+            box-sizing: inherit;
+}
+html {
+    @include ph-border-box;
+}
+// == End box-sizing reset ==
+
+
+
+/*
+--------------------
+General
+--------------------
+*/
+
+// Taken from HTML 5 BP
+::-moz-selection {
+    background: $content-selection-highlight;
+    text-shadow: none;
+}
+
+::selection {
+    background: $content-selection-highlight;
+    text-shadow: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-size: $base-font-scale + em;
+    font-family: $base-font-family;
+    line-height: 1.4;
+    color: $base-font-color;
+    background: $base-background-color;
+    
+}
+
+a {
+  color: $base-link-color;
+  &:hover {
+    color: $base-link-hover-color;
+  }
+}
+.container {
+    @include ph-outer-container();
+    @include clearfix();
+    &.padded {
+      padding: 1em;
+    }
+    &.main {
+      background: $main-container-background-color;
+      flex: 1;
+
+    }
+    
+}
+.container-fluid {
+    @include clearfix();
+    margin: 0;
+    width: 100%;
+
+}
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+// Grid
+$grid-columns: 12;
+
+@for $i from 1 through $grid-columns {
+    .grid-#{$i} {
+        width: 100%;
+        padding: 1em;
+    }
+}
+
+/*
+--------------------
+Modules
+--------------------
+*/
+@import 'modules/header.scss';
+@import 'modules/nav.scss';
+@import 'modules/footer.scss';
+@import 'modules/slider.scss';

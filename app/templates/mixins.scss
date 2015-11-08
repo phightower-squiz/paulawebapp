@@ -1,0 +1,213 @@
+// REM font sizing with pixel fall back
+// This technique will allow external font sizes to be set for html and respected
+// if REMs are supported (everything but IE8 and older).
+@mixin ph-font-size($sizeValue: 1) {
+    @include ph-rem-attr(font-size, $sizeValue);
+}
+
+// Express the value of an attribute using rems falling back to pixels
+@mixin ph-rem-attr($attr, $sizeValue: 1){
+    #{$attr}: ($sizeValue * $base-font-pixel) + px;
+    #{$attr}: $sizeValue + rem;
+}
+
+// Transition shortcut
+@mixin ph-transition($params: all 1s ease) {
+    -webkit-transition: $params;
+       -moz-transition: $params;
+            transition: $params;
+}
+
+// Apply a prefixed transformation
+@mixin ph-transform($params) {
+  -webkit-transform: $params; // Chrome, Safari 3.1+
+     //-moz-transform: $params; // Firefox 3.5-15
+      -ms-transform: $params; // IE 9
+          transform: $params;
+}
+
+// 2D rotation with IE support
+@mixin ph-rotate($deg) {
+    $msRotVal: (((360 + $deg) % 360) / 90);   // Modulo lets us handle negative values.
+    @include ph-transform(rotate($deg + deg));
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$msRotVal});
+}
+
+@mixin ph-border-box() {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+@mixin ph-reset-box-sizing() {
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+}
+
+@mixin ph-box-shadow($params) {
+    -webkit-box-shadow: $params;
+       -moz-box-shadow: $params;
+            box-shadow: $params;
+}
+
+// Glow effect taken from foundation
+@mixin ph-block-glowing-effect($selector:focus, $fade-time:300ms, $glowing-effect-color:blue) {
+    -webkit-transition: -webkit-box-shadow $fade-time, border-color $fade-time ease-in-out;
+       -moz-transition: -moz-box-shadow $fade-time, border-color $fade-time ease-in-out;
+            transition: box-shadow $fade-time, border-color $fade-time ease-in-out;
+
+    &:#{$selector} {
+        @include ph-box-shadow(0 0 5px $glowing-effect-color);
+        border-color: $glowing-effect-color;
+    }
+}
+
+// Legacy border radius helper
+@mixin ph-border-radius($radius: 4px) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+            border-radius: $radius;
+
+}
+
+// Opacity with IE filter fallback
+// Value should be expressed as a number between 0 and 100
+// with 0 being transparent and 100 being opaque
+@mixin ph-opacity($value) {
+    $decimal-value: $value/100;
+    -webkit-opacity: $decimal-value;
+       -moz-opacity: $decimal-value;
+            opacity: $decimal-value;
+    -ms-filter: #{"alpha(opacity=" + $value + ")"};
+    filter: alpha(opacity=$value);
+}
+
+// Individual border radius rule helper.
+@mixin ph-rounded($vert, $horz, $radius: 10px) {
+    -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+        -moz-border-radius-#{$vert}#{$horz}: $radius;
+            border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+// Use an SVG background image (for perfect Retina-rendering) with a PNG fallback.
+@mixin ph-svg-background($suffixless-url) {
+    background-image: url($suffixless-url + ".svg");
+    .no-svg & {
+        background-image: url($suffixless-url + ".png");
+    }
+}
+
+@mixin ph-flex-box() {
+    .no-js &,
+    .no-flexbox & {
+        display: table;
+    }
+    .flexbox & {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+    }
+}
+
+// Apply flex to an element
+@mixin ph-flex($values) {
+    // Table cell is a fallback to no flexbox support
+    .flexbox & {
+        -webkit-box-flex: $values;
+           -moz-box-flex:  $values;
+            -webkit-flex:  $values;
+                -ms-flex:  $values;
+                    flex:  $values;
+    }
+    .no-js &,
+    .no-flexbox & {
+      display: table-cell;
+      // Vertical align is needed to prevent auto vertical centering by some browsers
+      vertical-align: top;
+    }
+}
+
+// Em calculator based on James' in Squiz Map issue #4906
+@mixin ph-calc-ems($prop, $numerator, $denominator) {
+    $tmp: ($numerator/$denominator);
+    #{$prop}: #{$tmp}em;
+    #{$prop}: calc(#{$numerator}em / #{$denominator});
+}
+
+// CSS arrow helper
+// $direction: top, left, right, bottom
+@mixin ph-arrow($direction: top, $color: #000, $size: 5px, $height: 0px) {
+    $_height: $size+$height;
+
+    height: 0;
+    width: 0;
+    content: ' ';
+    border-style: solid;
+
+    @if $direction == 'top' {
+        border-width: $size $size $_height $size;
+        border-color: transparent transparent $color transparent;
+    } @else if $direction == 'right' {
+        border-width: $size $size $size $_height;
+        border-color: transparent transparent transparent $color;
+    } @else if $direction == 'bottom' {
+        border-width: $_height $size $size $size;
+        border-color: $color transparent transparent transparent;
+    } @else if $direction == 'left' {
+        border-width: $size $_height $size $size;
+        border-color: transparent $color transparent transparent;
+    }
+}
+
+@mixin ph-inline-block() {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+@mixin ph-list-reset() {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+@mixin ph-outer-container() {
+    max-width: $container-max-width;
+    margin: 0 auto 20px auto;
+}
+
+@mixin ph-pseudo-border($t,$r,$b,$l,$width,$height,$color) {
+    content: '';
+    position: absolute;
+    top: $t;
+    right: $r;
+    bottom: $b;
+    left: $l;
+    width: $width;
+    height: $height;
+    background: $color;
+    z-index: -1;
+}
+@mixin ph-columns($n) {
+    -webkit-column-count: $n; /* Chrome, Safari, Opera */
+    -moz-column-count: $n;  /* Firefox */
+    column-count: $n;
+}
+// Clear fix for containers of floated elements
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: '';
+        display: table;
+        line-height: 0;
+    }
+    &:after {
+        clear: both;
+    }
+    *zoom: 1;
+}

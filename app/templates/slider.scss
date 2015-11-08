@@ -1,0 +1,26 @@
+.sample-slider {
+	width: 300px;
+	background: #ffff00;
+	text-align: center;
+	padding: 2em;
+	margin: 0 auto;
+	.sample-slide {
+		width: 300px;
+		height: 100px;
+		background: black;
+		color: white;
+	}
+	.slick-arrow {
+		position: absolute;
+		top: 50%;
+		z-index: 10;
+		&.slick-prev {
+			left: -25px;
+		}
+		&.slick-next {
+			right: -25px;
+
+		}
+	}
+
+}

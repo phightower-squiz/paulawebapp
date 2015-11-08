@@ -1,0 +1,19 @@
+// Base font
+$base-font-scale: 1;  // The font scale multiplier (e.g. 2 = 32px/2em/2rem)
+$base-font-pixel: 16; // Used for font size calculations & conversions
+$base-font-color: #4e4d4d;
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// colors
+$base-background-color: #fafafa;
+$base-link-color: #999;
+$base-link-hover-color: #000;
+$footer-background-color: #999;
+$footer-text-color: #fff;
+$main-container-background-color: #fff; 
+
+// Selection highlighting
+$content-selection-highlight: #b3d4fc;
+
+//max width
+$container-max-width: 1024px;

@@ -1,0 +1,59 @@
+{
+  "name": "generator-paulawebapp",
+  "version": "1.0.1",
+  "description": "Scaffold out a front-end web app",
+  "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eurolife/generator-webapp.git"
+  },
+  "author": {
+    "name": "PCH"
+  },
+  "main": "app/index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "web",
+    "app",
+    "front-end",
+    "h5bp",
+    "modernizr",
+    "jquery",
+    "grunt"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "generator-jasmine": "^0.2.0",
+    "generator-mocha": "^0.2.0",
+    "mkdirp": "^0.5.1",
+    "underscore.string": "^3.1.1",
+    "wiredep": "^2.2.2",
+    "yeoman-generator": "^0.20.1",
+    "yosay": "^1.0.4"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "mocha": "*",
+    "yeoman-assert": "^2.0.0"
+  },
+  "gitHead": "79b524e1dea218f79225cdd656f8bd8b099840a0",
+  "bugs": {
+    "url": "https://github.com/yeoman/generator-webapp/issues"
+  },
+  "homepage": "https://github.com/yeoman/generator-webapp#readme",
+  "_id": "generator-webapp@1.0.1",
+  "_shasum": "00d92be01f6da8b52ef578ca150255735eac40f5",
+  "_from": "generator-webapp@*",
+  "_npmVersion": "2.9.1",
+  "_nodeVersion": "0.12.3",
+  "_npmUser": {
+    "name": "silvenon",
+    "email": "matija.marohnic@gmail.com"
+  }
+}

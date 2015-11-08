@@ -1,0 +1,6 @@
+.container-fluid.footer {
+	@include ph-outer-container();
+	padding: 1em; 
+	background: $footer-background-color;
+	color: $footer-text-color;
+}

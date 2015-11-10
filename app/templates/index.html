@@ -26,6 +26,14 @@
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
     <% } %>
+
+    <script type="text/javascript">
+        var require = {
+            baseUrl: 'scripts'
+        };
+    </script>
+    <script data-main="global-optimized.js" src="scripts/require.js"></script>
+    
   </head>
   <body>
     <!--[if lt IE 9]>
@@ -87,9 +95,7 @@
         </footer>
       </div>
     </div>
-    <script src="scripts/vendor/jquery.min.js"></script>
-    <script src="scripts/main.js"></script>
-
+    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

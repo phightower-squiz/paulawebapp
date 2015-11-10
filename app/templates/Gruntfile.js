@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       },<% if (useBabel) { %>
       babel: {
         files: ['<%%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['babel:dist','concat:serve']
+        tasks: ['requirejs:compile']
       },
       babelTest: {
         files: ['test/spec/{,*/}*.js'],
@@ -69,7 +69,33 @@ module.exports = function (grunt) {
         files: ['<%%= config.app %>/{,*/}*.html','<%%= config.app %>/siteconfig.json']
       }
     },
-
+    ////////////////////////////
+    // RequireJS optimization //
+    ////////////////////////////
+    requirejs: {
+        compile: {
+            options: {
+                mainConfigFile: '<%%= config.app %>/scripts/global-config.js',
+                name: 'global',
+                insertRequire: ['global'],
+                findNestedDependencies: true,
+                out: '.tmp/scripts/global-optimized.js',
+                optimize: 'none',//'uglify',
+                wrapShim: true
+            }
+        },
+        buildsite: {
+          options: {
+            mainConfigFile: '<%%= config.app %>/scripts/global-config.js',
+            name: 'global',
+            insertRequire: ['global'],
+            findNestedDependencies: true,
+            out: '<%%= config.dist %>/scripts/global-optimized.js',
+            optimize: 'uglify',
+            wrapShim: true
+          }
+        }
+    },
     browserSync: {
       options: {
         notify: false,
@@ -375,17 +401,6 @@ module.exports = function (grunt) {
         // define a string to put between each file in the concatenated output
         //separator: ';'
       },
-      
-      serve: {
-        // the files to concatenate
-        src: ['<%%= config.app %>/scripts/plugins/*.js','<%%= config.app %>/scripts/main.js'],
-        // the location of the resulting JS file
-        dest: '.tmp/scripts/main.js'
-      },
-      sitebuild: {
-        src: ['<%%= config.app %>/scripts/plugins/*.js','<%%= config.app %>/scripts/main.js'],
-        dest: '<%%= config.dist %>/scripts/main.js'
-      },
       cssserve: {
         src: ['.tmp/styles/plugins/*.css'],
         dest: '.tmp/styles/plugins.css'
@@ -402,6 +417,7 @@ module.exports = function (grunt) {
           dest: '<%%= config.dist %>',
           src: [
             'scripts/vendor/*.js',
+            'scripts/require.js',
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
@@ -483,7 +499,8 @@ module.exports = function (grunt) {
       'concurrent:server',
       'postcss',
       'concat:cssserve',
-      'concat:serve',
+      //'concat:serve',
+      'requirejs:compile',
       'browserSync:livereload',
       'watch'
     ]);
@@ -515,11 +532,12 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'concat:sitebuild',
+    //'concat:sitebuild',
+    'requirejs:buildsite',
     'postcss',
     'concat',
     'cssmin',
-    'uglify',
+    //'uglify',
     'copy:dist',<% if (includeModernizr) { %>
     'modernizr',<% } %>
     //'filerev',

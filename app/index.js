@@ -207,17 +207,38 @@ module.exports = generators.Base.extend({
 
     scripts: function () {
       this.fs.copy(
-        this.templatePath('main.js'),
-        this.destinationPath('app/scripts/main.js')
+        this.templatePath('global.js'),
+        this.destinationPath('app/scripts/global.js')
       );
+      this.fs.copy(
+        this.templatePath('global-config.js'),
+        this.destinationPath('app/scripts/global-config.js')
+      );
+      this.fs.copy(
+        this.templatePath('require.js'),
+        this.destinationPath('app/scripts/require.js')
+      );
+      this.fs.copy(
+        this.templatePath('modules/get-data.js'),
+        this.destinationPath('app/scripts/modules/get-data.js')
+      );
+      this.fs.copy(
+        this.templatePath('modules/menus.js'),
+        this.destinationPath('app/scripts/modules/menus.js')
+      );
+      this.fs.copy(
+        this.templatePath('modules/sliders.js'),
+        this.destinationPath('app/scripts/modules/sliders.js')
+      );
+      
       this.fs.copy(
         this.templatePath('jquery.min.js'),
         this.destinationPath('app/scripts/vendor/jquery.min.js')
       );
       if(this.includeSlickSlider) {
         this.fs.copy(
-          this.templatePath('plugins/slick.min.js'),
-          this.destinationPath('app/scripts/plugins/slick.min.js')
+          this.templatePath('modules/plugins/slick.js'),
+          this.destinationPath('app/scripts/modules/plugins/slick.js')
         );
       }
     },
@@ -388,7 +409,6 @@ module.exports = generators.Base.extend({
     misc: function () {
       //mkdirp('app/images');
       mkdirp('app/fonts');
-      mkdirp('app/scripts/plugins');
       this.fs.copy(
         this.templatePath('siteconfig.json'),
         this.destinationPath('app/siteconfig.json')

@@ -1,0 +1,28 @@
+
+{
+	"main_nav": [
+	{
+		"title": "Home",
+		"link": "index.html"
+	},
+	{
+		"title": "About",
+		"link": "about.html",
+		"sub_nav": [
+			{
+				"title": "Sub page 1",
+				"link": "#"
+			},
+			{
+				"title": "Sub page 2",
+				"link": "#"
+			}
+		]
+	},
+	{
+		"title": "Contact",
+		"link": "contact.html"
+	}
+
+	]
+}

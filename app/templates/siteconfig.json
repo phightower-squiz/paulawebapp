@@ -5,11 +5,60 @@
 },
 {
 	"page": "About",
-	"link": "about.html"
+	"link": "about.html",
+	"subs": [
+		{
+		"page": "Company Creed",
+		"link": "company-creed.html"
+		},
+		{
+		"page": "Education",
+		"link": "education.html"
+		},
+		{
+		"page": "Attorney Referral",
+		"link": "attorney-referral.html"
+		},
+		{
+		"page": "Testimonials",
+		"link": "testimonials.html"
+		}
+	]
+},
+
+{
+	"page": "Services",
+	"link": "services.html",
+	"subs": [
+		{
+		"page": "Locations Served",
+		"link": "locations-served.html"
+		},
+		{
+		"page": "Types of Law",
+		"link": "types-of-law.html"
+		},
+		{
+		"page": "Mobile Notary Public",
+		"link": "mobile-notary-public.html"
+		},
+		{
+		"page": "Contract Paralegal",
+		"link": "contract-paralegal.html"
+		}
+	]
+},
+
+{
+	"page": "Forms",
+	"link": "forms.html"
+},
+{
+	"page": "FAQ",
+	"link": "faq.html"
 },
 {
 	"page": "Contact",
 	"link": "contact.html"
 }
-
 ]

@@ -56,17 +56,16 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },<% if (includeSass) { %>
       sass: {
-        files: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}',
-                '<%%= config.app %>/styles/imports/{,*/}*.{scss,sass}',
-                '<%%= config.app %>/styles/plugins/{,*/}*.{scss,sass}'],
+        files: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['sass:server', 'postcss', 'concat:cssserve']
       },<% } %>
       styles: {
-        files: ['<%%= config.app %>/styles/{,*/}*.css','<%%= config.app %>/styles/imports/{,*/}*.{scss,sass}'],
-        tasks: ['newer:copy:styles', 'postcss']
+        files: ['<%%= config.app %>/styles/{,*/}*.css'],
+        tasks: ['postcss']
       },
       html: {
-        files: ['<%%= config.app %>/{,*/}*.html','<%%= config.app %>/siteconfig.json']
+        files: ['<%%= config.app %>/html/{,*/}*.{hbs,json}'],
+        tasks: ['assemble']
       }
     },
     ////////////////////////////
@@ -96,6 +95,21 @@ module.exports = function (grunt) {
           }
         }
     },
+    // assemble 
+    assemble: {
+      options: {
+            flatten:true,
+            partials: ['<%%= config.app %>/html/partials/**/*.hbs'],
+            layout: ['<%%= config.app %>/html/default.hbs'],
+            data: ['<%%= config.app %>/html/data/*.{json,yml}']
+        },
+        pages: {
+            files: {
+                // Assemble from temp into dist
+                '<%%= config.app  %>/': ['<%%= config.app  %>/html/pages/*.hbs']
+            }
+        }
+    },
     browserSync: {
       options: {
         notify: false,
@@ -106,7 +120,7 @@ module.exports = function (grunt) {
           files: [
             '<%%= config.app %>/{,*/}*.html',
             '.tmp/styles/{,*/}*.css',
-            '<%%= config.app %>/siteconfig.json',
+            '<%%= config.app %>/*.json',
             '<%%= config.app %>/images/{,*/}*',<% if (useBabel) { %>
             '.tmp/scripts/{,*/}*.js'<% } else { %>
             '<%%= config.app %>/scripts/{,*/}*.js'<% } %>
@@ -499,8 +513,8 @@ module.exports = function (grunt) {
       'concurrent:server',
       'postcss',
       'concat:cssserve',
-      //'concat:serve',
       'requirejs:compile',
+      'assemble',
       'browserSync:livereload',
       'watch'
     ]);
@@ -532,11 +546,11 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    //'concat:sitebuild',
     'requirejs:buildsite',
     'postcss',
     'concat',
     'cssmin',
+    'assemble',
     //'uglify',
     'copy:dist',<% if (includeModernizr) { %>
     'modernizr',<% } %>

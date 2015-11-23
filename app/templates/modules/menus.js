@@ -22,13 +22,11 @@ define([
 						self.mobileSubMenu($(this));
 					});
 
-					
-					
-
 					$( window ).resize(function() {
 						self.resetMenus();
 						
 					});
+					self.setMenuFunctions();
 				});
 			},
 			test: function() {

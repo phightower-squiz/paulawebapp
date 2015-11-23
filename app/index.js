@@ -218,10 +218,7 @@ module.exports = generators.Base.extend({
         this.templatePath('require.js'),
         this.destinationPath('app/scripts/require.js')
       );
-      this.fs.copy(
-        this.templatePath('modules/get-data.js'),
-        this.destinationPath('app/scripts/modules/get-data.js')
-      );
+      
       this.fs.copy(
         this.templatePath('modules/menus.js'),
         this.destinationPath('app/scripts/modules/menus.js')
@@ -410,8 +407,8 @@ module.exports = generators.Base.extend({
       //mkdirp('app/images');
       mkdirp('app/fonts');
       this.fs.copy(
-        this.templatePath('siteconfig.json'),
-        this.destinationPath('app/siteconfig.json')
+        this.templatePath('html/**/*.{json,hbs}'),
+        this.destinationPath('app/html')
       );
     }
   },

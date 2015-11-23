@@ -7,10 +7,7 @@ Modules
 
 define([
 	'jquery',
-	//'modules/accordion',
-
 	'modules/menus',
-	'modules/get-data',
 	'modules/sliders'
 	
 	],

@@ -1,11 +1,14 @@
 {
   "private": true,
+  "version": "0.1.0",
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
+    "async": "~0.2.5",
     "grunt": "^0.4.5",
 <% if (useBabel) { -%>
     "grunt-babel": "^5.0.0",
 <% } -%>
+    "grunt-assemble": "^0.4.0",
     "grunt-browser-sync": "^2.1.2",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",
